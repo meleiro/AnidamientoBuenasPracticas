@@ -12,6 +12,20 @@ public class Complejidad {
         System.out.println("¿Se aplica descuento? " + descuento);
     }
 
+
+
+    static boolean clientePremiumBeneficio(){
+
+        if (!clienteRegistrado) return false;
+        if (!premium) return false;
+
+        return importeCompra > 50  || rebajas  || cuponValido;
+
+
+    }
+
+
+
     static boolean aplicarDescuento() {
 
         if (clienteRegistrado) {

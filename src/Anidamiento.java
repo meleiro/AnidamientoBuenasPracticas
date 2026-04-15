@@ -2,15 +2,65 @@ public class Anidamiento {
 
     static String nombre = "Ana";
     static boolean usuarioExiste = true;
-    static boolean usuarioActivo = true;
-    static boolean matriculado = true;
+    static boolean usuarioActivo = false;
+    static boolean matriculado = false;
     static boolean pagoRealizado = true;
 
     static String curso = "Java Básico";
     static int plazasDisponibles = 3;
 
     public static void main(String[] args) {
-        permitirAcceso();
+        permitirAccesoSinAnidamiento();
+    }
+
+    static void permitirAccesoSinAnidamiento() {
+
+        boolean valido = true;
+
+
+        if(!usuarioExiste) {
+            System.out.println("El usuario no existe");
+            valido = false;
+        }
+
+        if(curso == null) {
+            System.out.println("El curso no existe");
+            valido = false;
+        }
+
+        if(!usuarioActivo) {
+            System.out.println("El usuario no está activo");
+            valido = false;
+        }
+
+        if(!matriculado) {
+            System.out.println("El usuario no está matriculado");
+            valido = false;
+        }
+
+        if(!pagoRealizado) {
+            System.out.println("El pago no está realizado");
+            valido = false;
+        }
+
+        if(plazasDisponibles == 0) {
+            System.out.println("No hay plazas");
+            valido = false;
+        }
+
+
+
+        if (valido) {
+            System.out.println("Acceso concedido a " + nombre +
+                    " para el curso " + curso);
+        }
+
+
+
+
+
+
+
     }
 
     static void permitirAcceso() {
