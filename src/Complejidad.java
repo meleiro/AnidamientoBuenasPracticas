@@ -8,20 +8,49 @@ public class Complejidad {
     static boolean cuponValido = false;
 
     public static void main(String[] args) {
-        boolean descuento = aplicarDescuento();
+        boolean descuento = aplicarDescuentoMejorada();
         System.out.println("¿Se aplica descuento? " + descuento);
     }
+    static boolean aplicarDescuentoMejorada() {
 
+        //  Regla 1: cliente premium
+        if (esClientePremiumConBeneficio()) {
+            return true;
+        }
 
+        //  Regla 2: cliente habitual
+        if (esClienteHabitualConBeneficio()) {
+            return true;
+        }
 
-    static boolean clientePremiumBeneficio(){
+        //  Regla 3: cliente no registrado con cupón especial
+        if (esInvitadoConCuponEspecial()) {
+            return true;
+        }
 
+        return false;
+    }
+
+    static boolean esClientePremiumConBeneficio() {
         if (!clienteRegistrado) return false;
         if (!premium) return false;
 
-        return importeCompra > 50  || rebajas  || cuponValido;
+        return importeCompra > 50 || rebajas || cuponValido;
+    }
 
+    static boolean esClienteHabitualConBeneficio() {
+        if (!clienteRegistrado) return false;
+        if (premium) return false;
+        if (comprasAnteriores <= 5) return false;
 
+        return importeCompra > 100 || rebajas;
+    }
+
+    static boolean esInvitadoConCuponEspecial() {
+        if (clienteRegistrado) return false;
+        if (!cuponValido) return false;
+
+        return importeCompra > 200;
     }
 
 
